@@ -33,7 +33,12 @@ public class UserManager implements UserService {
 	@Override
 	public Result add(User user) {
 		this.userDao.save(user);
-		return new SuccessResult("ürün eklendi");
+		return new SuccessResult("kullanıcı eklendi");
 	}
+
+	@Override
+    public DataResult<User> checkEmail(String email) {
+        return new SuccessDataResult<User>(this.userDao.findByEmail(email));
+    }
 
 }

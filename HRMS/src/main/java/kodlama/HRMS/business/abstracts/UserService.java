@@ -7,7 +7,7 @@ import kodlama.HRMS.core.utilities.results.Result;
 import kodlama.HRMS.entities.concretes.User;
 
 public interface UserService {
-	
+	DataResult<User> checkEmail(String email);
 	DataResult<List<User>> getAll();
 	Result add(User user);
 
