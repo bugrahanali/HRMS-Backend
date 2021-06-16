@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -14,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "Verification_candidate")
+@Table(name = "verification_candidate")
 @Entity
 public class Verification_Candidate {
 	
@@ -22,14 +23,19 @@ public class Verification_Candidate {
 	@Column(name="id")
 	private int id;
 	
-	@JoinColumn(name = "candidate_id")
-	private int candidate_id;
+	//@ManyToOne()
+	//@JoinColumn(name = "candidate_id")
+	//private Candidate candidate_id;
 	
-	@JoinColumn(name = "employer_id")
-	private int employer_id;
+	//@ManyToOne()
+	//@JoinColumn(name = "employer_id")
+	//private Employer employer;
 	
 	@Column(name = "is_confirmed")
 	private boolean is_confirmed;
+	
+	@Column(name = "code")
+	private boolean code;
 	
 
 }

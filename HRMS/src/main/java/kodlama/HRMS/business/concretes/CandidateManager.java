@@ -28,7 +28,7 @@ public class CandidateManager implements CandidateService{
 	
 	private boolean validationForCandidate(Candidate candidate) {
 		if (Objects.isNull(candidate.getIdentityNumber()) || Objects.isNull(candidate.getFirstName()) || Objects.isNull(candidate.getLastName()) 
-				|| Objects.isNull(candidate.getEmail()) || Objects.isNull(candidate.getPasswords()) || Objects.isNull(candidate.getBirthDate())) {
+				|| Objects.isNull(candidate.getEmail()) || Objects.isNull(candidate.getPassword()) || Objects.isNull(candidate.getBirthDate())) {
 			return false;
 		}
 		

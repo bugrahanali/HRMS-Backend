@@ -16,11 +16,11 @@ import kodlama.HRMS.entities.concretes.User;
 
 @RestController
 @RequestMapping("/api/users")
-public class UsersController {
+public class UserController {
 	
 	@Autowired
 	private UserService userService;	
-	public UsersController(UserService userService) {
+	public UserController(UserService userService) {
 		super();
 		this.userService = userService;
 	}

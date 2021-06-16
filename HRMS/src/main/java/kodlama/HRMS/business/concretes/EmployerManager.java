@@ -14,10 +14,11 @@ import kodlama.HRMS.core.utilities.results.SuccessDataResult;
 import kodlama.HRMS.core.utilities.results.SuccessResult;
 import kodlama.HRMS.dataAccess.abstracts.EmployerDao;
 import kodlama.HRMS.entities.concretes.Employer;
+import kodlama.HRMS.entities.concretes.JobAdvert;
 
 @Service
-public class EmployerManager implements EmployerService{
-	
+public class EmployerManager implements EmployerService {
+
 	private EmployerDao employerDao;
 
 	@Autowired
@@ -25,43 +26,42 @@ public class EmployerManager implements EmployerService{
 		super();
 		this.employerDao = employerDao;
 	}
-	
+
 	private boolean validationForEmployer(Employer employer) {
-		if (Objects.isNull(employer.getCompanyName()) || Objects.isNull(employer.getWebAdress()) || Objects.isNull(employer.getEmail()) 
-				|| Objects.isNull(employer.getTelefonNumber()) || Objects.isNull(employer.getPasswords())){
+		if (Objects.isNull(employer.getCompanyName()) || Objects.isNull(employer.getWebAdress())
+				|| Objects.isNull(employer.getEmail()) || Objects.isNull(employer.getTelefonNumber())
+				|| Objects.isNull(employer.getPassword())) {
 			return false;
 		}
-		
-	  return true;
+
+		return true;
 	}
-	
-	
 
 	@Override
 	public DataResult<List<Employer>> getAll() {
-		
+
 		return new SuccessDataResult<List<Employer>>(this.employerDao.findAll(), "Employer listelendi");
 	}
 
 	@Override
 	public DataResult<Employer> getByEmail(String email) {
-		
-		return new SuccessDataResult<Employer>( "Emaile göre getirildi.");
+
+		return new SuccessDataResult<Employer>("Emaile göre getirildi.");
 	}
 
 	@Override
 	public Result add(Employer employer) {
-		if(getByEmail(employer.getEmail()).getData()!=null){
+		if (getByEmail(employer.getEmail()).getData() != null) {
 			return new ErrorResult("Bu Email zaten kullanılmaktadır.");
 		}
-		if(!this.validationForEmployer(employer)) {
-			return new ErrorResult("You have entered incomplete information. Please check your information again.");
+		if (!this.validationForEmployer(employer)) {
+			return new ErrorResult("Eksik bilgi girdiniz . Lütfen doldurduğunuzdan emin olunuz.");
 		}
 		this.employerDao.save(employer);
 		return new SuccessResult("Employer eklendi.");
-		
+
 	}
-	
+
 	
 
 }
